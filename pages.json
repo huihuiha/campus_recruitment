@@ -5,7 +5,8 @@
 			"style": {
 				"navigationBarTitleText": "首页",
 				"navigationStyle": "default",
-				"navigationBarBackgroundColor": "#ff6364"
+				"navigationBarBackgroundColor": "#ff6364",
+				"disableScroll": true
 			}
 		},
 		{
@@ -13,11 +14,11 @@
 			"style": {
 				"navigationBarTitleText": "消息中心",
 				"enablePullDownRefresh": true,
-				 "backgroundTextStyle": "dark",
+				"backgroundTextStyle": "dark",
 				"navigationBarBackgroundColor": "#ff6364",
 				"navigationStyle": "default",
 				"app-plus": {
-				    "titleView": false
+					"titleView": false
 				}
 			}
 		},
@@ -28,8 +29,28 @@
 				"navigationBarBackgroundColor": "#ff6364",
 				"navigationStyle": "default"
 			}
+		},
+		{
+			"path": "pages/news/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"disableScroll": true,
+				"navigationBarBackgroundColor": "#ff6364",
+				"navigationStyle": "default"
+			}
 		}
-	],
+	    ,{
+            "path" : "pages/resume/resume",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "推荐简历",
+                "navigationStyle": "default",
+                "navigationBarBackgroundColor": "#ff6364",
+                "disableScroll": true
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

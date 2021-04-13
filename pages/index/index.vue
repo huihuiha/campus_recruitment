@@ -11,9 +11,9 @@
 			</view>
 			<view class="header_content">
 				<view class="left">
-					<text class="title">教资面试精品课</text>
+					<text class="title">面试精品内容</text>
 					<text class="sub_title">读懂考官套路，轻松备考面试</text>
-					<text class="btn">免费试学</text>
+					<text class="btn">努力学习</text>
 				</view>
 				<view>
 					<image src="/static/right.png" style="width: 131px;height: 122px;"></image>
@@ -23,7 +23,7 @@
 		<view class="page_content">
 			<view class="menu">
 				<template v-for="(it,i) in menus">
-					<view class="item" :key="'menu_'+i">
+					<view class="item" :key="'menu_'+i" @click="gotoNews(i)">
 						<view class="img_view" :style="{background: it.bg}">
 							<image :src="it.icon" class="image"></image>
 						</view>
@@ -39,52 +39,78 @@
 					</view>
 				</template>
 			</view>
-			<view class="ad">
-				<view class="ad_btn">
-					<text class="title">教资面试课上线</text>
-					<text class="sub_title">老用户现实立减100元</text>
-				</view>
-				<image src="/static/tag.png" class="bg"></image>
-			</view>
 		</view>
-		<scroll-view scroll-x="true" class="slider">
-			<template v-for="(it, i) in records">
-				<view class="item" :key="'slider_item_'+i" :style="{background: it.bg, marginRight: i === records.length - 1 ? '15px' : '0px'}">
-					<view class="item_content">
-						<view class="title">
-							<text class="first">{{it.title}}</text>
-							<text class="main">主讲：{{it.mainTeacher}}</text>
-							<text class="sub" :style="{color:it.subColor}">标题名称</text>
+
+		<view class="container999" @touchstart="refreshStart" @touchmove="refreshMove" @touchend="refreshEnd">
+			<refresh ref="refresh" @isRefresh='isRefresh'></refresh>
+			<view class='nav'>
+				<navTab ref="navTab" :tabTitle="tabTitle" @changeTab='changeTab'></navTab>
+			</view>
+			<!-- swiper切换 swiper-item表示一页 scroll-view表示滚动视窗 -->
+			<swiper style="min-height: 100vh;" :current="currentTab" @change="swiperTab">
+				<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex">
+					<scroll-view style="height: 100%;" scroll-y="true" @scrolltolower="lower1" scroll-with-animation
+						:scroll-into-view="toView">
+						<view :id="'top'+listIndex" style="width: 100%;height: 120upx;"></view>
+						<view class='content'>
+							<view class='card' v-for="(item,index) in listItem" v-if="listItem.length > 0" :key="index">
+								<image class="image" src="../../static/company/company.png">
+								</image>
+								<view class="message">
+									<view class="name">
+										广州凡科
+									</view>
+									<view class="money">
+										8k-15K
+									</view>
+									<view class="other">
+										广州 | 经验不限 | 本科
+									</view>
+								</view>
+							</view>
 						</view>
-						<image class="image" :src="it.icon"></image>
-						<text class="free">免\n费</text>
-					</view>
-				</view>
-			</template>
-		</scroll-view>
+						<view class='noCard' v-if="listItem.length===0">
+							暂无信息
+						</view>
+						<view style="width: 100%;height: 100upx;opacity:0;">底部占位盒子</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+		</view>
 	</view>
 </template>
 
 <script>
+	const util = require('../../util/util.js');
+	import refresh from '../../components/refresh.vue';
+	import navTab from '../../components/navTab.vue';
+	import tabBar4 from '../../components/tabBar4.vue';
+
 	export default {
+
+		components: {
+			refresh,
+			navTab,
+			tabBar4
+		},
 		data() {
 			return {
 				menus: [{
 						bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))',
 						icon: '/static/graduation.png',
-						txt: '同伴管',
+						txt: '招聘动态',
 						isFree: true
 					},
 					{
 						bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
 						icon: '/static/live.png',
-						txt: '直播课',
+						txt: '面试推文',
 						isFree: false
 					},
 					{
 						bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
 						icon: '/static/emblem.png',
-						txt: '优选课',
+						txt: '简历推荐',
 						isFree: true
 					},
 					{
@@ -94,346 +120,137 @@
 						isFree: true
 					}
 				],
-				// second_menus: [{
-				// 		icon: '/static/exam.png',
-				// 		txt: '考试教案'
-				// 	},
-				// 	{
-				// 		icon: '/static/textbook.png',
-				// 		txt: '教材教案',
-				// 	},
-				// 	{
-				// 		icon: '/static/book_ticket.png',
-				// 		txt: '青书券'
-				// 	},
-				// 	{
-				// 		icon: '/static/more.png',
-				// 		txt: '全部课程'
-				// 	}
-				// ],
 				records: [{
 						bg: 'linear-gradient(-30deg,rgba(171,218,255,1),rgba(215,239,255,1))',
-						title: '教师考情分析',
+						title: '前端岗位',
 						mainTeacher: '小A',
-						subTitle: '标题名称',
+						subTitle: 'javascript',
 						subColor: '#15639F',
 						icon: '/static/test2.png',
 						isFree: true
 					},
 					{
 						bg: 'linear-gradient(-30deg,rgba(192,253,227,1),rgba(224,252,240,1))',
-						title: '查看详情',
+						title: '后端岗位',
 						mainTeacher: '小B',
-						subTitle: '标题名称',
+						subTitle: 'java/go',
 						subColor: '#07B77B',
 						icon: '/static/test.png',
 						isFree: false
 					},
 					{
 						bg: 'linear-gradient(-30deg,rgba(171,218,255,1),rgba(215,239,255,1))',
-						title: '教师考情分析',
+						title: '人工智能',
 						mainTeacher: '小A',
-						subTitle: '标题名称',
+						subTitle: 'python',
 						subColor: '#15639F',
 						icon: '/static/test2.png',
 						isFree: true
 					}
-				]
-			}
-		},
-		onLoad() {
-
+				],
+				toView: '', //回到顶部id
+				currentPage: 'longIndex',
+				currentTab: 0, //sweiper所在页
+				pages: [1, 1, 1, 1, 1, 1, 1, 1, 1], //第几页存储 
+				tabTitle: ['前端', '后端', '测试', '运营', '人工智能', '其它'], //导航栏格式
+				list: [
+					[1, 2, 3, 4, 5, 6],
+					['a', 'b', 'c', 'd', 'e', 'f'],
+					[],
+					['2233', '4234', '13144', '324244'],
+					[1, 2, 3, 4, 5, 6],
+					['a', 'b', 'c', 'd', 'e', 'f'],
+					['7'],
+					['8'],
+					['9号']
+				] //数据格式
+			};
 		},
 		methods: {
-
+			toTop() {
+				this.toView = ''
+				setTimeout(() => {
+					this.toView = 'top' + this.currentTab
+				}, 10)
+			},
+			changeTab(index) {
+				this.currentTab = index
+			},
+			// 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
+			isRequest(pages) {
+				return new Promise((resolve, reject) => {
+					this.pages[this.currentTab]++
+					var that = this
+					setTimeout(() => {
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'none',
+							title: `请求第${that.currentTab + 1 }个导航栏的第${that.pages[that.currentTab]}页数据成功`
+						})
+						let newData = ['新数据1', '新数据2', '新数据3']
+						resolve(newData)
+					}, 1000)
+				})
+			},
+			// swiper 滑动
+			swiperTab: function(e) {
+				var index = e.detail.current //获取索引
+				this.$refs.navTab.longClick(index);
+			},
+			// 加载更多 util.throttle为防抖函数
+			lower1: util.throttle(function(e) {
+				console.log(`加载${this.currentTab}`) //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
+				uni.showLoading({
+					title: '加载中',
+					mask: true
+				})
+				this.isRequest().then((res) => {
+					let tempList = this.list
+					tempList[this.currentTab] = tempList[this.currentTab].concat(res)
+					console.log(tempList)
+					this.list = tempList
+					this.$forceUpdate() //二维数组，开启强制渲染
+				})
+			}, 300),
+			// 刷新touch监听
+			refreshStart(e) {
+				this.$refs.refresh.refreshStart(e);
+			},
+			refreshMove(e) {
+				this.$refs.refresh.refreshMove(e);
+			},
+			refreshEnd(e) {
+				this.$refs.refresh.refreshEnd(e);
+			},
+			isRefresh() {
+				setTimeout(() => {
+					uni.showToast({
+						icon: 'success',
+						title: '刷新成功'
+					})
+					this.$refs.refresh.endAfter() //刷新结束调用
+				}, 1000)
+			},
+			gotoNews(i){
+				if(i === 1){
+					uni.navigateTo({
+						url:"../news/index"
+					})
+				}
+				else if(i === 2){
+					uni.navigateTo({
+						url:"../resume/resume"
+					})
+				}
+				
+					
+				
+			}
 		}
 	}
 </script>
 
-<style>
-	page {
-		width: 100%;
-		background-color: #ebebeb;
-	}
-</style>
+
 <style lang="scss" scoped>
-	@function realSize($args) {
-		@return $args / 1.5;
-	}
-
-	.page_edu {
-		width: 100%;
-	}
-
-	.page_edu_header {
-		background-color: #ff6364;
-		width: 100%;
-		height: realSize(415px);
-		
-		.header {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			padding: realSize(20px);
-
-			.btn {
-				width: realSize(36px);
-				height: realSize(30px);
-			}
-
-			.input {
-				height: realSize(59px);
-				width: 100%;
-				margin-left: realSize(20px);
-				margin-right: realSize(20px);
-				background: rgba(255, 255, 255, 1);
-				border-radius: realSize(30px);
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-
-				.search {
-					width: realSize(30px);
-					height: realSize(30px);
-					margin-left: realSize(20px);
-					margin-right: realSize(20px);
-				}
-			}
-		}
-
-		.header_content {
-			display: flex;
-			flex-direction: row;
-
-			.left {
-				display: flex;
-				flex-direction: column;
-				width: 57%;
-				margin-top: 10px;
-				margin-left: 15px;
-				margin-right: 15px;
-
-				.title {
-					width: realSize(419px);
-					height: realSize(59px);
-					font-size: realSize(47px);
-					font-weight: bold;
-					color: rgba(255, 255, 255, 1);
-				}
-
-				.sub_title {
-					margin-top: 3px;
-					font-size: realSize(18px);
-					font-weight: 400;
-					color: rgba(255, 255, 255, 1);
-
-					background: linear-gradient(0deg, rgba(120, 255, 224, 1) 0%, rgba(255, 255, 255, 1) 100%);
-					-webkit-background-clip: text;
-					-webkit-text-fill-color: transparent;
-				}
-
-				.btn {
-					margin-top: 3px;
-					width: realSize(198px);
-					height: realSize(60px);
-					background: linear-gradient(-30deg, rgba(252, 135, 29, 1), rgba(246, 185, 9, 1));
-					box-shadow: 0px 4px 10px 0px rgba(255, 121, 0, 0.5);
-					border-radius: realSize(30px);
-					color: rgba(255, 255, 255, 1);
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
-			}
-		}
-	}
-
-	.page_content {
-		width: 100%;
-		margin-top: -74px;
-
-		.menu {
-			margin-left: 10px;
-			margin-right: 10px;
-			padding-left: 10px;
-			padding-right: 10px;
-			height: realSize(176px);
-			background: rgba(255, 255, 255, 1);
-			box-shadow: 0px 10px 10px 0px rgba(0, 161, 124, 0.1);
-			border-radius: 10px;
-			display: flex;
-			flex-direction: row;
-			align-items: stretch;
-			justify-content: space-between;
-
-			.item {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-
-				.img_view {
-					width: 60px;
-					height: 60px;
-					border-radius: 30px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-
-					.image {
-						width: 50px;
-						height: 50px;
-					}
-				}
-
-				.txt {
-					margin-top: 5px;
-					font-size: 14px;
-					color: rgba(51, 51, 51, 1);
-				}
-			}
-		}
-
-		.s_menu {
-			display: flex;
-			flex-direction: row;
-			align-items: stretch;
-			justify-content: space-between;
-			margin-top: 15px;
-			margin-left: 10px;
-			margin-right: 10px;
-			padding-left: 10px;
-			padding-right: 10px;
-
-			.item {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-
-				.image {
-					width: 35px;
-					height: 35px;
-				}
-
-				.txt {
-					margin-top: 5px;
-					font-size: 14px;
-					color: rgba(51, 51, 51, 1);
-				}
-			}
-		}
-
-		.ad {
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-
-			.bg {
-				position: absolute;
-				width: 120px;
-				height: 105px;
-				left: 0;
-			}
-
-			.ad_btn {
-				width: 100%;
-				height: 63px;
-				margin: 30px;
-				background: linear-gradient(0deg, rgba(253, 155, 28, 1), rgba(251, 197, 33, 1));
-				border-radius: 67px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-
-				.title {
-					font-size: realSize(38px);
-					font-family: PingFang-SC-Heavy;
-					font-weight: 800;
-					color: rgba(255, 255, 255, 1);
-				}
-
-				.sub_title {
-					background: linear-gradient(0deg, rgba(255, 128, 37, 1), rgba(255, 153, 32, 1));
-					box-shadow: 0px 4px 5px 0px rgba(92, 53, 48, 0.3), 0px 1px 0px 0px rgba(228, 228, 228, 1);
-					border-radius: realSize(24px);
-					font-size: realSize(24px);
-					font-family: PingFang-SC-Heavy;
-					font-weight: 800;
-					font-style: italic;
-					color: rgba(255, 236, 177, 1);
-					line-height: realSize(26px);
-				}
-			}
-		}
-	}
-
-	.slider {
-		white-space: nowrap;
-		width: 100%;
-		background-color: white;
-
-		.item {
-			display: inline-block;
-			margin-left: 15px;
-			margin-top: 13px;
-			margin-bottom: 13px;
-			width: 60%;
-			height: 125px;
-			border-radius: 10px;
-
-			.item_content {
-				display: flex;
-				flex-direction: row;
-
-				.title {
-					width: 36%;
-					margin: 20px;
-					display: flex;
-					flex-direction: column;
-					
-					.first {
-						font-size: 16px;
-						color:rgba(46,65,69,1);
-					}
-					.main {
-						font-size: 13px;
-						color:rgba(79,103,101,1);
-						margin-top: 5px;
-					}
-					.sub {
-						width: 60px;
-						font-size: 10px;
-						margin-top: 20px;
-						background:rgba(255,255,255,0.4);
-						border-radius:5px;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-					}
-				}
-
-				.image {
-					margin-top: 35px;
-					width: 80px;
-					height: 80px;
-				}
-
-				.free {
-					background: rgba(11, 147, 252, 1);
-					border-radius: 0px 0px 22px 22px;
-					width: 25px;
-					height: 50px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					color: #FFFFFF;
-					font-size: 14px;
-				}
-			}
-		}
-	}
+	@import './index.scss'
 </style>

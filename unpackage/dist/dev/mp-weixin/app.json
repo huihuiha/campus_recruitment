@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/message/message",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/news/index",
+    "pages/resume/resume"
   ],
   "subPackages": [],
   "window": {
