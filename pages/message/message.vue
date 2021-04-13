@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import msg from "./msg.js";
-export default msg;
+import message from "./message.js";
+export default message;
 </script>
 
 <style lang="scss" scoped>
-   @import './msg.scss'
+   @import './message.scss'
 </style>

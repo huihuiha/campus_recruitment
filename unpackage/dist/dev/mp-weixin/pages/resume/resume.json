@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "推荐简历",
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#ff6364",
+  "disableScroll": true,
+  "usingComponents": {}
+}

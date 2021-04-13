@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "disableScroll": true,
+  "navigationBarBackgroundColor": "#ff6364",
+  "navigationStyle": "default",
+  "usingComponents": {
+    "news-page": "/pages/news/components/news-page"
+  }
+}

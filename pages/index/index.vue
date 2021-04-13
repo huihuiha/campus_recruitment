@@ -2,12 +2,12 @@
 	<view class="page_edu">
 		<view class="page_edu_header">
 			<view class="header">
-				<image src="/static/icon_main.png" class="btn"></image>
+				<image src="/static/index/icon_main.png" class="btn"></image>
 				<view class="input">
-					<image src="/static/search.png" class="search"></image>
+					<image src="/static/index/search.png" class="search"></image>
 					<input type="text" value="" placeholder="搜索" />
 				</view>
-				<image src="/static/msg.png" class="btn"></image>
+				<image src="/static/index/msg.png" class="btn"></image>
 			</view>
 			<view class="header_content">
 				<view class="left">
@@ -16,7 +16,7 @@
 					<text class="btn">努力学习</text>
 				</view>
 				<view>
-					<image src="/static/right.png" style="width: 131px;height: 122px;"></image>
+					<image src="/static/index/right.png" style="width: 131px;height: 122px;"></image>
 				</view>
 			</view>
 		</view>
@@ -81,10 +81,10 @@
 </template>
 
 <script>
-	const util = require('../../util/util.js');
-	import refresh from '../../components/refresh.vue';
-	import navTab from '../../components/navTab.vue';
-	import tabBar4 from '../../components/tabBar4.vue';
+	import {util} from '@/common/util.js'
+	import refresh from './components/refresh.vue';
+	import navTab from './components/navTab.vue';
+	import tabBar4 from './components/tabBar4.vue';
 
 	export default {
 
@@ -97,54 +97,26 @@
 			return {
 				menus: [{
 						bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))',
-						icon: '/static/graduation.png',
+						icon: '/static/index/graduation.png',
 						txt: '招聘动态',
 						isFree: true
 					},
 					{
 						bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
-						icon: '/static/live.png',
+						icon: '/static/index/live.png',
 						txt: '面试推文',
 						isFree: false
 					},
 					{
 						bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
-						icon: '/static/emblem.png',
+						icon: '/static/index/emblem.png',
 						txt: '简历推荐',
 						isFree: true
 					},
 					{
 						bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))',
-						icon: '/static/question_bank.png',
+						icon: '/static/index/question_bank.png',
 						txt: '智能题库',
-						isFree: true
-					}
-				],
-				records: [{
-						bg: 'linear-gradient(-30deg,rgba(171,218,255,1),rgba(215,239,255,1))',
-						title: '前端岗位',
-						mainTeacher: '小A',
-						subTitle: 'javascript',
-						subColor: '#15639F',
-						icon: '/static/test2.png',
-						isFree: true
-					},
-					{
-						bg: 'linear-gradient(-30deg,rgba(192,253,227,1),rgba(224,252,240,1))',
-						title: '后端岗位',
-						mainTeacher: '小B',
-						subTitle: 'java/go',
-						subColor: '#07B77B',
-						icon: '/static/test.png',
-						isFree: false
-					},
-					{
-						bg: 'linear-gradient(-30deg,rgba(171,218,255,1),rgba(215,239,255,1))',
-						title: '人工智能',
-						mainTeacher: '小A',
-						subTitle: 'python',
-						subColor: '#15639F',
-						icon: '/static/test2.png',
 						isFree: true
 					}
 				],
@@ -160,9 +132,6 @@
 					['2233', '4234', '13144', '324244'],
 					[1, 2, 3, 4, 5, 6],
 					['a', 'b', 'c', 'd', 'e', 'f'],
-					['7'],
-					['8'],
-					['9号']
 				] //数据格式
 			};
 		},

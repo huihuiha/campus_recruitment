@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#ff6364",
+  "disableScroll": true,
+  "usingComponents": {
+    "refresh": "/pages/index/components/refresh",
+    "nav-tab": "/pages/index/components/navTab",
+    "tab-bar4": "/pages/index/components/tabBar4"
+  }
+}
