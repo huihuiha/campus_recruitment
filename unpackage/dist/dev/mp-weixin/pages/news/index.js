@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var newsPage = function newsPage() {Promise.all(/*! require.ensure | pages/news/components/news-page */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/news/components/news-page")]).then((function () {return resolve(__webpack_require__(/*! ./components/news-page.nvue */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var newsPage = function newsPage() {Promise.all(/*! require.ensure | pages/news/components/news-page */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/news/components/news-page")]).then((function () {return resolve(__webpack_require__(/*! ./components/news-page.nvue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -215,28 +215,16 @@ var TAB_PRELOAD_OFFSET = 1;var _default =
     return {
       tabList: [{
         id: "tab01",
-        name: '最新',
+        name: '最新消息',
         newsid: 0 },
       {
         id: "tab02",
-        name: '大公司',
+        name: '招聘新闻',
         newsid: 23 },
       {
         id: "tab03",
-        name: '内容',
-        newsid: 223 },
-      {
-        id: "tab04",
-        name: '消费',
-        newsid: 221 },
-      {
-        id: "tab05",
-        name: '娱乐',
-        newsid: 225 },
-      {
-        id: "tab06",
-        name: '区块链',
-        newsid: 208 }],
+        name: '技术推文',
+        newsid: 223 }],
 
       tabIndex: 0,
       cacheTab: [],

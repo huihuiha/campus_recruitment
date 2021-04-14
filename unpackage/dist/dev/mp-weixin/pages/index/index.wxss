@@ -164,9 +164,8 @@ page.data-v-57280228 {
   -webkit-box-align: stretch;
   -webkit-align-items: stretch;
           align-items: stretch;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
 }
 .page_content .menu .item.data-v-57280228 {
   display: -webkit-box;
@@ -410,6 +409,7 @@ page.data-v-57280228 {
   color: #6B8082;
   position: relative;
   background-color: #fff;
+  margin-top: -10rpx;
 }
 .content.data-v-57280228 {
   width: 100%;

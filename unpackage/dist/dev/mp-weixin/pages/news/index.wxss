@@ -92,7 +92,7 @@ page {
 	top: 0;
 	bottom: 0;
 	width: 0;
-	background-color: #007AFF;
+	background-color: #ff6364;
 }
 .scroll-view-animation {
 	-webkit-transition-duration: 0.2s;
@@ -129,7 +129,7 @@ page {
 	white-space: nowrap;
 }
 .uni-tab-item-title-active {
-	color: #007AFF;
+	color: #ff6364;
 }
 .swiper-item {
 	-webkit-box-flex: 1;

@@ -112,7 +112,7 @@ page {
 			display: flex;
 			flex-direction: row;
 			align-items: stretch;
-			justify-content: space-between;
+			justify-content: space-around;
 
 			.item {
 				display: flex;
@@ -298,6 +298,7 @@ page {
 		color: #6B8082;
 		position: relative;
 		background-color: #fff;
+		margin-top: -10rpx;
 	}
 
 	.content {

@@ -33,7 +33,7 @@
 		{
 			"path": "pages/news/index",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "最新动态",
 				"disableScroll": true,
 				"navigationBarBackgroundColor": "#ff6364",
 				"navigationStyle": "default"
@@ -54,7 +54,7 @@
             "path" : "pages/job_content/job_content",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "岗位详情",
                 "enablePullDownRefresh": true,
 				"navigationStyle": "default",
 				"navigationBarBackgroundColor": "#ff6364",

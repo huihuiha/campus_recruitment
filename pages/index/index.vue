@@ -16,7 +16,7 @@
 					<text class="btn">努力学习</text>
 				</view>
 				<view>
-					<image src="/static/index/right.png" style="width: 131px;height: 122px;"></image>
+					<image src="/static/index/right.png" style="width: 131px;height: 102px;"></image>
 				</view>
 			</view>
 		</view>
@@ -101,12 +101,12 @@
 						txt: '招聘动态',
 						isFree: true
 					},
-					{
-						bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
-						icon: '/static/index/live.png',
-						txt: '面试推文',
-						isFree: false
-					},
+					// {
+					// 	bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
+					// 	icon: '/static/index/live.png',
+					// 	txt: '面试推文',
+					// 	isFree: false
+					// },
 					{
 						bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
 						icon: '/static/index/emblem.png',
@@ -201,12 +201,12 @@
 				}, 1000)
 			},
 			gotoNews(i){
-				if(i === 1){
+				if(i === 0){
 					uni.navigateTo({
 						url:"../news/index"
 					})
 				}
-				else if(i === 2){
+				else if(i === 1){
 					uni.navigateTo({
 						url:"../resume/resume"
 					})

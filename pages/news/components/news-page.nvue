@@ -1,6 +1,5 @@
 <template>
   <view class="page-news">
-    <!-- #ifdef MP-QQ -->
     <scroll-view class="listview" style="flex: 1;" enableBackToTop="true" scroll-y @scrolltolower="loadMore()">
       <view v-for="(item, index) in dataList" :key="item.id">
         <news-item :newsItem="item" @close="closeItem(index)" @click="goDetail(item)"></news-item>
@@ -9,27 +8,6 @@
         <text class="loading-more-text">{{loadingText}}</text>
       </view>
     </scroll-view>
-    <!-- #endif -->
-    <!-- QQ multipleSlots=true bug -->
-    <!-- #ifndef MP-QQ -->
-    <uni-list ref="list" class="listview" :enableBackToTop="true" :scroll-y="true" @scrolltolower="loadMore()">
-      <uni-refresh class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
-        <div class="refresh-view">
-          <image class="refresh-icon" :src="refreshIcon" :style="{width: (refreshing || pulling) ? 0: '32px'}" :class="{'refresh-icon-active': refreshFlag}"></image>
-          <uni-load-more v-if="refreshing" class="loading-icon" status="loading" :contentText="loadingMoreText"></uni-load-more>
-          <text class="loading-text">{{refreshText}}</text>
-        </div>
-      </uni-refresh>
-      <uni-cell v-for="(item, index) in dataList" :key="item.id">
-        <news-item :newsItem="item" @close="closeItem(index)" @click="goDetail(item)"></news-item>
-      </uni-cell>
-      <uni-cell v-if="isLoading || dataList.length > 4">
-        <view class="loading-more">
-          <text class="loading-more-text">{{loadingText}}</text>
-        </view>
-      </uni-cell>
-    </uni-list>
-    <!-- #endif -->
     <no-data class="no-data" v-if="isNoData" @retry="loadMore"></no-data>
   </view>
 </template>
@@ -112,62 +90,64 @@
         this.requestParams.time = new Date().getTime() + '';
 
         var startTime = new Date();
-        uni.request({
-          // url: this.$host + 'api/news',
-          url: 'https://unidemo.dcloud.net.cn/api/news',
-          data: this.requestParams,
-          success: (result) => {
-			console.log(result)
-            var endTime = new Date();
-            const data = result.data;
-            this.isNoData = (data.length <= 0);
+		
+		let _this = this
+		
+		uniCloud.callFunction({
+			name:"get_news"
+		}).then(({result})=>{
+			
+			var endTime = new Date();
+			const data = result.data;
+		
+			this.isNoData = (data.length <= 0);
+			console.log(data)
+			const data_list = data.map((news) => {
+			  return {
+			    id: _this.newGuid() + news.id,
+			    newsid: news.id,
+			    article_type: 1,
+			    datetime: friendlyDate(new Date(news.published_at.replace(/\-/g, '/')).getTime()),
+			    title: news.title,
+			    image_url: news.cover,
+			    source: news.author_name,
+			    comment_count: news.comments_count,
+			    post_id: news.post_id
+			  };
+			});
+			console.log(data_list)
+			if (refresh) {
+			  _this.dataList = data_list;
+			  _this.requestParams.minId = 0;
+			} else {
+			  _this.dataList = _this.dataList.concat(data_list);
+			  _this.requestParams.minId = data[data.length - 1].id;
+			}
+			
+			if (_this.dataList.length > 0 && _this._isWidescreen && _this.dataList.length <= 10) {
+			  _this.goDetail(_this.dataList[0]);
+			}
+		}).catch(err=>{
+			if (_this.dataList.length == 0) {
+			  _this.isNoData = true;
+			}
+		}).finally((res)=>{
+			_this.isLoading = false;
+			if (refresh) {
+			  _this.refreshing = false;
+			  _this.refreshFlag = false;
+			  _this.refreshText = "已刷新";
+			  if (_this.pullTimer) {
+			    clearTimeout(this.pullTimer);
+			  }
+			  _this.pullTimer = setTimeout(() => {
+			    _this.pulling = false;
+			  }, 1000);
+			}
+		})
+		
+		
 
-            const data_list = data.map((news) => {
-              return {
-                id: this.newGuid() + news.id,
-                newsid: news.id,
-                article_type: 1,
-                datetime: friendlyDate(new Date(news.published_at.replace(/\-/g, '/')).getTime()),
-                title: news.title,
-                image_url: news.cover,
-                source: news.author_name,
-                comment_count: news.comments_count,
-                post_id: news.post_id
-              };
-            });
-
-            if (refresh) {
-              this.dataList = data_list;
-              this.requestParams.minId = 0;
-            } else {
-              this.dataList = this.dataList.concat(data_list);
-              this.requestParams.minId = data[data.length - 1].id;
-            }
-
-            if (this.dataList.length > 0 && this._isWidescreen && this.dataList.length <= 10) {
-              this.goDetail(this.dataList[0]);
-            }
-          },
-          fail: (err) => {
-            if (this.dataList.length == 0) {
-              this.isNoData = true;
-            }
-          },
-          complete: (e) => {
-            this.isLoading = false;
-            if (refresh) {
-              this.refreshing = false;
-              this.refreshFlag = false;
-              this.refreshText = "已刷新";
-              if (this.pullTimer) {
-                clearTimeout(this.pullTimer);
-              }
-              this.pullTimer = setTimeout(() => {
-                this.pulling = false;
-              }, 1000);
-            }
-          }
-        });
       },
       loadMore(e) {
         this.loadData();
@@ -214,12 +194,6 @@
         if (this.refreshing) {
           return;
         }
-
-        // var angle = (e.pullingDistance) / e.viewHeight * 180;
-        // if (angle > 180) {
-        // 	angle = 180;
-        // }
-        // tab.angle = angle;
 
         this.pulling = false;
         if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {

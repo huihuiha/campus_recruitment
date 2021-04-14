@@ -45,7 +45,7 @@
 		</view>
 		<view class="function">
 			<button type="default" class="collection">收藏</button>
-			<button type="primary" class="submit">投递</button>
+			<button type="primary" class="submit" @click="submit">投递</button>
 		</view>
 	</view>
 
@@ -58,6 +58,15 @@
 			return {
 
 			};
+		},
+		methods:{
+			submit(){
+				uniCloud.callFunction({
+					name:"get_news"
+				}).then(res=>{
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

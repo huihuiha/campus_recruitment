@@ -48,28 +48,16 @@
 			return {
 				tabList: [{
 					id: "tab01",
-					name: '最新',
+					name: '最新消息',
 					newsid: 0
 				}, {
 					id: "tab02",
-					name: '大公司',
+					name: '招聘新闻',
 					newsid: 23
 				}, {
 					id: "tab03",
-					name: '内容',
+					name: '技术推文',
 					newsid: 223
-				}, {
-					id: "tab04",
-					name: '消费',
-					newsid: 221
-				}, {
-					id: "tab05",
-					name: '娱乐',
-					newsid: 225
-				}, {
-					id: "tab06",
-					name: '区块链',
-					newsid: 208
 				}],
 				tabIndex: 0,
 				cacheTab: [],
@@ -287,6 +275,7 @@
 		/* #ifdef MP-ALIPAY || MP-BAIDU */
 		height: 100vh;
 		/* #endif */
+		
 	}
 
 	.tab-bar {
@@ -322,7 +311,7 @@
 		top: 0;
 		bottom: 0;
 		width: 0;
-		background-color: #007AFF;
+		background-color: #ff6364;
 	}
 
 	.scroll-view-animation {
@@ -360,7 +349,7 @@
 	}
 
 	.uni-tab-item-title-active {
-		color: #007AFF;
+		color: #ff6364;
 	}
 
 	.swiper-item {
