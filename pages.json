@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页",
+				"navigationBarTitleText": "校园招聘",
 				"navigationStyle": "default",
 				"navigationBarBackgroundColor": "#ff6364",
 				"disableScroll": true
@@ -47,6 +47,18 @@
                 "navigationStyle": "default",
                 "navigationBarBackgroundColor": "#ff6364",
                 "disableScroll": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/job_content/job_content",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true,
+				"navigationStyle": "default",
+				"navigationBarBackgroundColor": "#ff6364",
+				"disableScroll": true
             }
             
         }

@@ -1927,18 +1927,18 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 117:
+/***/ 122:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 118);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 123);
 
 /***/ }),
 
-/***/ 118:
+/***/ 123:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -1969,7 +1969,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 119);
+module.exports = __webpack_require__(/*! ./runtime */ 124);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -1986,7 +1986,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 124:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -2715,6 +2715,90 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
+
+/***/ }),
+
+/***/ 17:
+/*!***************************************************************!*\
+  !*** E:/Users/user/Desktop/campus_recruitment/common/util.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.friendlyDate = friendlyDate;exports.util = void 0;function friendlyDate(timestamp) {
+  var formats = {
+    'year': '%n% 年前',
+    'month': '%n% 月前',
+    'day': '%n% 天前',
+    'hour': '%n% 小时前',
+    'minute': '%n% 分钟前',
+    'second': '%n% 秒前' };
+
+
+  var now = Date.now();
+  var seconds = Math.floor((now - timestamp) / 1000);
+  var minutes = Math.floor(seconds / 60);
+  var hours = Math.floor(minutes / 60);
+  var days = Math.floor(hours / 24);
+  var months = Math.floor(days / 30);
+  var years = Math.floor(months / 12);
+
+  var diffType = '';
+  var diffValue = 0;
+  if (years > 0) {
+    diffType = 'year';
+    diffValue = years;
+  } else {
+    if (months > 0) {
+      diffType = 'month';
+      diffValue = months;
+    } else {
+      if (days > 0) {
+        diffType = 'day';
+        diffValue = days;
+      } else {
+        if (hours > 0) {
+          diffType = 'hour';
+          diffValue = hours;
+        } else {
+          if (minutes > 0) {
+            diffType = 'minute';
+            diffValue = minutes;
+          } else {
+            diffType = 'second';
+            diffValue = seconds === 0 ? seconds = 1 : seconds;
+          }
+        }
+      }
+    }
+  }
+  return formats[diffType].replace('%n%', diffValue);
+}
+
+
+function throttle(fn, gapTime) {
+  if (gapTime == null || gapTime == undefined) {
+    gapTime = 1500;
+  }
+
+  var _lastTime = null;
+
+  // 返回新的函数
+  return function () {
+    var _nowTime = +new Date();
+    if (_nowTime - _lastTime > gapTime || !_lastTime) {
+      fn.apply(this, arguments); //将this和参数传给原函数
+      _lastTime = _nowTime;
+    }
+  };
+}
+
+
+var util = {
+  throttle: throttle,
+  vuemixin: {
+    created: function created() {console.log(1);} } };exports.util = util;
 
 /***/ }),
 
@@ -9051,90 +9135,6 @@ module.exports = g;
 /***/ (function(module, exports) {
 
 
-
-/***/ }),
-
-/***/ 81:
-/*!***************************************************************!*\
-  !*** E:/Users/user/Desktop/campus_recruitment/common/util.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.friendlyDate = friendlyDate;exports.util = void 0;function friendlyDate(timestamp) {
-  var formats = {
-    'year': '%n% 年前',
-    'month': '%n% 月前',
-    'day': '%n% 天前',
-    'hour': '%n% 小时前',
-    'minute': '%n% 分钟前',
-    'second': '%n% 秒前' };
-
-
-  var now = Date.now();
-  var seconds = Math.floor((now - timestamp) / 1000);
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
-  var days = Math.floor(hours / 24);
-  var months = Math.floor(days / 30);
-  var years = Math.floor(months / 12);
-
-  var diffType = '';
-  var diffValue = 0;
-  if (years > 0) {
-    diffType = 'year';
-    diffValue = years;
-  } else {
-    if (months > 0) {
-      diffType = 'month';
-      diffValue = months;
-    } else {
-      if (days > 0) {
-        diffType = 'day';
-        diffValue = days;
-      } else {
-        if (hours > 0) {
-          diffType = 'hour';
-          diffValue = hours;
-        } else {
-          if (minutes > 0) {
-            diffType = 'minute';
-            diffValue = minutes;
-          } else {
-            diffType = 'second';
-            diffValue = seconds === 0 ? seconds = 1 : seconds;
-          }
-        }
-      }
-    }
-  }
-  return formats[diffType].replace('%n%', diffValue);
-}
-
-
-function throttle(fn, gapTime) {
-  if (gapTime == null || gapTime == undefined) {
-    gapTime = 1500;
-  }
-
-  var _lastTime = null;
-
-  // 返回新的函数
-  return function () {
-    var _nowTime = +new Date();
-    if (_nowTime - _lastTime > gapTime || !_lastTime) {
-      fn.apply(this, arguments); //将this和参数传给原函数
-      _lastTime = _nowTime;
-    }
-  };
-}
-
-
-var util = {
-  throttle: throttle,
-  vuemixin: {
-    created: function created() {console.log(1);} } };exports.util = util;
 
 /***/ })
 

@@ -218,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _util = __webpack_require__(/*! @/common/util.js */ 81); //
+var _util = __webpack_require__(/*! @/common/util.js */ 17); //
 //
 //
 //
@@ -300,7 +300,7 @@ var _util = __webpack_require__(/*! @/common/util.js */ 81); //
 //
 //
 //
-var refresh = function refresh() {__webpack_require__.e(/*! require.ensure | pages/index/components/refresh */ "pages/index/components/refresh").then((function () {return resolve(__webpack_require__(/*! ./components/refresh.vue */ 17));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navTab = function navTab() {__webpack_require__.e(/*! require.ensure | pages/index/components/navTab */ "pages/index/components/navTab").then((function () {return resolve(__webpack_require__(/*! ./components/navTab.vue */ 61));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar4 = function tabBar4() {__webpack_require__.e(/*! require.ensure | pages/index/components/tabBar4 */ "pages/index/components/tabBar4").then((function () {return resolve(__webpack_require__(/*! ./components/tabBar4.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { refresh: refresh, navTab: navTab, tabBar4: tabBar4 }, data: function data() {return { menus: [{ bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))', icon: '/static/index/graduation.png', txt: '招聘动态', isFree: true }, { bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))', icon: '/static/index/live.png', txt: '面试推文', isFree: false }, { bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))', icon: '/static/index/emblem.png', txt: '简历推荐', isFree: true }, { bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))', icon: '/static/index/question_bank.png', txt: '智能题库', isFree: true }], toView: '', //回到顶部id
+var refresh = function refresh() {__webpack_require__.e(/*! require.ensure | pages/index/components/refresh */ "pages/index/components/refresh").then((function () {return resolve(__webpack_require__(/*! ./components/refresh.vue */ 61));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navTab = function navTab() {__webpack_require__.e(/*! require.ensure | pages/index/components/navTab */ "pages/index/components/navTab").then((function () {return resolve(__webpack_require__(/*! ./components/navTab.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar4 = function tabBar4() {__webpack_require__.e(/*! require.ensure | pages/index/components/tabBar4 */ "pages/index/components/tabBar4").then((function () {return resolve(__webpack_require__(/*! ./components/tabBar4.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { refresh: refresh, navTab: navTab, tabBar4: tabBar4 }, data: function data() {return { menus: [{ bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))', icon: '/static/index/graduation.png', txt: '招聘动态', isFree: true }, { bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))', icon: '/static/index/live.png', txt: '面试推文', isFree: false }, { bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))', icon: '/static/index/emblem.png', txt: '简历推荐', isFree: true }, { bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))', icon: '/static/index/question_bank.png', txt: '智能题库', isFree: true }], toView: '', //回到顶部id
       currentPage: 'longIndex', currentTab: 0, //sweiper所在页
       pages: [1, 1, 1, 1, 1, 1, 1, 1, 1], //第几页存储 
       tabTitle: ['前端', '后端', '测试', '运营', '人工智能', '其它'], //导航栏格式
@@ -348,8 +348,10 @@ var refresh = function refresh() {__webpack_require__.e(/*! require.ensure | pag
           url: "../resume/resume" });
 
       }
-
-
+    },
+    gotodetails: function gotodetails() {
+      uni.navigateTo({
+        url: "../job_content/job_content" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -48,7 +48,7 @@
 			</view>
 			<!-- swiper切换 swiper-item表示一页 scroll-view表示滚动视窗 -->
 			<swiper style="min-height: 100vh;" :current="currentTab" @change="swiperTab">
-				<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex">
+				<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex" @click="gotodetails">
 					<scroll-view style="height: 100%;" scroll-y="true" @scrolltolower="lower1" scroll-with-animation
 						:scroll-into-view="toView">
 						<view :id="'top'+listIndex" style="width: 100%;height: 120upx;"></view>
@@ -211,9 +211,11 @@
 						url:"../resume/resume"
 					})
 				}
-				
-					
-				
+			},
+			gotodetails(){
+				uni.navigateTo({
+					url:"../job_content/job_content"
+				})
 			}
 		}
 	}
