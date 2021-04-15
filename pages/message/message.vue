@@ -1,52 +1,60 @@
-<!--本页面由uniapp切片工具生成，uni-app切片-可视化设计工具(一套代码编译到7个平台iOS、Android、H5、小程序)，软件下载地址：http://www.ymznkf.com/new_view_669.htm -->
 <template>
-	<view class="content">
-			<view class="msg_16">
-				<view class="msg_2">
-					<view class="msg_12">
-						<image v-on:click="icon_4_click()"  src="/static/msg/images/msg_icon_4.jpg" mode="scaleToFill" border="0"    class="icon"></image>
-						<text decode="true" class="word">评论</text>
-					</view>
-					<view class="msg_13">
-						<image v-on:click="icon_5_click()"  src="/static/msg/images/msg_icon_5.jpg" mode="scaleToFill" border="0"    class="icon"></image>
-						<text decode="true" class="word">粉丝</text>
-					</view>
-					<view class="msg_14">
-						<image v-on:click="icon_6_click()"  src="/static/msg/images/msg_icon_6.jpg" mode="scaleToFill" border="0"    class="icon"></image>
-						<text decode="true" class="word">点赞</text>
-					</view>
-				</view>
-				<view class="Messages">
-				<view v-for="(item_Messages, index) in list_Messages" :key="index" >
-		
-					<view class="row">
-						<image v-on:click="icon_40_click(item_Messages)"  :src="item_Messages.icon" mode="scaleToFill" border="0"    class="icon"></image>
-						<view class="msg_41">
-							<view class="msg_42">
-								<text decode="true" class="subject">{{item_Messages.subject}}</text>
-								<text decode="true" class="time">{{item_Messages.time}}</text>
-							</view>
-							<view class="msg_43">
-								<text decode="true" class="smallTitle">{{item_Messages.smallTitle}}</text>
-								<text decode="true" class="vote">{{item_Messages.vote}}</text>
-							</view>
-						</view>
-					</view>
-				</view>
-				</view>
-			</view>
-		
+	<view>
 
-		<view class="loading">{{loadingText}}</view>
-		<view class="ymBbottom"></view>
+		<uni-segmented-control 
+			
+			:current="current" 
+			:values="items"
+			 @clickItem="onClickItem" 
+			 styleType="text"
+				activeColor="#ff6364">
+		</uni-segmented-control>
+		<view class="content">
+			<view v-show="current === 0">
+				<msg-item></msg-item>
+			</view>
+			<view v-show="current === 1">
+				
+<uni-card 
+    title="Dcloud" 
+    mode="title" 
+    :is-shadow="true" 
+    thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" 
+    extra="技术没有上限" 
+    note="Tips"
+>
+    uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。即使不跨端，uni-app同时也是更好的小程序开发框架。
+</uni-card>
+			</view>
+			<view v-show="current === 2">
+				选项卡3的内容
+			</view>
+		</view>
+
 	</view>
 </template>
 
 <script>
-import message from "./message.js";
-export default message;
+	import uniSegmentedControl from '@/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue' //也可使用此方式引入组件
+	import uniCard from '@/uni_modules/uni-card/components/uni-card/uni-card.vue' //也可使用此方式引入组件
+	import msgItem from './components/msgItem.vue'
+	const items = ['初筛', '笔试', '面试','不合适']
+	export default {
+		components: {
+			uniSegmentedControl,
+			msgItem,
+			uniCard
+		},
+		data: () => ({
+			current: 0,
+			items
+		}),
+		methods: {
+			onClickItem(index) {
+				if (this.current !== index.currentIndex) {
+					this.current = index.currentIndex;
+				}
+			},
+		},
+	}
 </script>
-
-<style lang="scss" scoped>
-   @import './message.scss'
-</style>
