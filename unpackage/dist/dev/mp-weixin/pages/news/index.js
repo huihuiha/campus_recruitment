@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var newsPage = function newsPage() {Promise.all(/*! require.ensure | pages/news/components/news-page */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/news/components/news-page")]).then((function () {return resolve(__webpack_require__(/*! ./components/news-page.nvue */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var newsPage = function newsPage() {Promise.all(/*! require.ensure | pages/news/components/news-page */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/news/components/news-page")]).then((function () {return resolve(__webpack_require__(/*! ./components/news-page.nvue */ 108));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
