@@ -2031,6 +2031,25 @@ var util = {
 
 /***/ }),
 
+/***/ 179:
+/*!***************************************************************!*\
+  !*** E:/Users/user/Desktop/campus_recruitment/model/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.get_tabs = void 0;
+
+var get_tabs = function get_tabs() {
+  return uniCloud.callFunction({
+    name: "get_tabs" });
+
+};exports.get_tabs = get_tabs;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 58)["default"]))
+
+/***/ }),
+
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!

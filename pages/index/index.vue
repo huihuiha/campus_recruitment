@@ -46,6 +46,7 @@
 			<view class='nav'>
 				<navTab ref="navTab" :tabTitle="tabTitle" @changeTab='changeTab'></navTab>
 			</view>
+			
 			<!-- swiper切换 swiper-item表示一页 scroll-view表示滚动视窗 -->
 			<swiper style="min-height: 100vh;" :current="currentTab" @change="swiperTab">
 				<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex" @click="gotodetails">
@@ -81,45 +82,52 @@
 </template>
 
 <script>
-	import {util} from '@/common/util.js'
 	import refresh from './components/refresh.vue';
 	import navTab from './components/navTab.vue';
 	import tabBar4 from './components/tabBar4.vue';
 
-	export default {
+	import {
+		util
+	} from '@/common/util.js'
 
+	import {
+		get_tabs
+	} from '@/model/index.js'
+
+
+	const menus = [{
+			bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))',
+			icon: '/static/index/graduation.png',
+			txt: '招聘动态',
+			isFree: true
+		},
+		{
+			bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
+			icon: '/static/index/emblem.png',
+			txt: '简历推荐',
+			isFree: true
+		},
+		{
+			bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))',
+			icon: '/static/index/question_bank.png',
+			txt: '招聘发布',
+			isFree: true
+		}
+	]
+
+
+	export default {
 		components: {
 			refresh,
 			navTab,
 			tabBar4
 		},
+		onShow() {
+
+		},
 		data() {
 			return {
-				menus: [{
-						bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))',
-						icon: '/static/index/graduation.png',
-						txt: '招聘动态',
-						isFree: true
-					},
-					// {
-					// 	bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
-					// 	icon: '/static/index/live.png',
-					// 	txt: '面试推文',
-					// 	isFree: false
-					// },
-					{
-						bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
-						icon: '/static/index/emblem.png',
-						txt: '简历推荐',
-						isFree: true
-					},
-					{
-						bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))',
-						icon: '/static/index/question_bank.png',
-						txt: '智能题库',
-						isFree: true
-					}
-				],
+				menus,
 				toView: '', //回到顶部id
 				currentPage: 'longIndex',
 				currentTab: 0, //sweiper所在页
@@ -134,6 +142,12 @@
 					['a', 'b', 'c', 'd', 'e', 'f'],
 				] //数据格式
 			};
+		},
+		onShow() {
+			get_tabs().then(res => {
+				this.tabTitle = res.result.data
+				console.log(this.tabTitle)
+			})
 		},
 		methods: {
 			toTop() {
@@ -200,21 +214,20 @@
 					this.$refs.refresh.endAfter() //刷新结束调用
 				}, 1000)
 			},
-			gotoNews(i){
-				if(i === 0){
+			gotoNews(i) {
+				if (i === 0) {
 					uni.navigateTo({
-						url:"../news/index"
+						url: "../news/index"
 					})
-				}
-				else if(i === 1){
+				} else if (i === 1) {
 					uni.navigateTo({
-						url:"../resume/resume"
+						url: "../resume/resume"
 					})
 				}
 			},
-			gotodetails(){
+			gotodetails() {
 				uni.navigateTo({
-					url:"../job_content/job_content"
+					url: "../job_content/job_content"
 				})
 			}
 		}

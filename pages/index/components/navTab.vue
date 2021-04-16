@@ -1,8 +1,19 @@
 <template>
 	<view class="navTabBox">
 		<view class="longTab">
-			<scroll-view scroll-x="true" style="white-space: nowrap; display: flex" scroll-with-animation :scroll-left="tabLeft">
-				<view class="longItem" :style='"width:"+isWidth+"px"' :data-index="index" :class="index===tabClick?'click':''" v-for="(item,index) in tabTitle" :key="index" :id="'id'+index" @click="longClick(index)">{{item}}</view>
+			<scroll-view scroll-x="true" 
+			style="white-space: nowrap; display: flex" 
+			scroll-with-animation :scroll-left="tabLeft">
+				<view 
+					class="longItem" 
+					:style='"width:"+isWidth+"px"' 
+					:data-index="index" :class="index===tabClick?'click':''" 
+					v-for="(item,index) in tabTitle" 
+					:key="item._id" 
+					:id="'id'+index"
+					 @click="longClick(index)">
+					 {{item.title}}
+				 </view>
 				<view class="underlineBox" :style='"transform:translateX("+isLeft+"px);width:"+isWidth+"px"'>
 					<view class="underline"></view>
 				</view>

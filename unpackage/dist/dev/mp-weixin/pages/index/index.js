@@ -218,142 +218,155 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _util = __webpack_require__(/*! @/common/util.js */ 17); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var refresh = function refresh() {__webpack_require__.e(/*! require.ensure | pages/index/components/refresh */ "pages/index/components/refresh").then((function () {return resolve(__webpack_require__(/*! ./components/refresh.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navTab = function navTab() {__webpack_require__.e(/*! require.ensure | pages/index/components/navTab */ "pages/index/components/navTab").then((function () {return resolve(__webpack_require__(/*! ./components/navTab.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar4 = function tabBar4() {__webpack_require__.e(/*! require.ensure | pages/index/components/tabBar4 */ "pages/index/components/tabBar4").then((function () {return resolve(__webpack_require__(/*! ./components/tabBar4.vue */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { refresh: refresh, navTab: navTab, tabBar4: tabBar4 }, data: function data() {return { menus: [{ bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))', icon: '/static/index/graduation.png', txt: '招聘动态', isFree: true }, // {
-      // 	bg: 'linear-gradient(0deg,rgba(251,184,35,1),rgba(255,228,40,1))',
-      // 	icon: '/static/index/live.png',
-      // 	txt: '面试推文',
-      // 	isFree: false
-      // },
-      { bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))', icon: '/static/index/emblem.png', txt: '简历推荐', isFree: true }, { bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))', icon: '/static/index/question_bank.png', txt: '智能题库', isFree: true }], toView: '', //回到顶部id
-      currentPage: 'longIndex', currentTab: 0, //sweiper所在页
+
+
+
+
+
+var _util = __webpack_require__(/*! @/common/util.js */ 17);
+
+
+
+var _index = __webpack_require__(/*! @/model/index.js */ 179);var _components$onShow$da;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var refresh = function refresh() {__webpack_require__.e(/*! require.ensure | pages/index/components/refresh */ "pages/index/components/refresh").then((function () {return resolve(__webpack_require__(/*! ./components/refresh.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navTab = function navTab() {__webpack_require__.e(/*! require.ensure | pages/index/components/navTab */ "pages/index/components/navTab").then((function () {return resolve(__webpack_require__(/*! ./components/navTab.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tabBar4 = function tabBar4() {__webpack_require__.e(/*! require.ensure | pages/index/components/tabBar4 */ "pages/index/components/tabBar4").then((function () {return resolve(__webpack_require__(/*! ./components/tabBar4.vue */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+
+
+var menus = [{
+  bg: 'linear-gradient(0deg,rgba(9,216,162,1),rgba(90,242,217,1))',
+  icon: '/static/index/graduation.png',
+  txt: '招聘动态',
+  isFree: true },
+
+{
+  bg: 'linear-gradient(0deg,rgba(255,126,34,1),rgba(240,184,27,1))',
+  icon: '/static/index/emblem.png',
+  txt: '简历推荐',
+  isFree: true },
+
+{
+  bg: 'linear-gradient(0deg,rgba(9,177,252,1),rgba(24,200,255,1))',
+  icon: '/static/index/question_bank.png',
+  txt: '招聘发布',
+  isFree: true }];var _default = (_components$onShow$da = {
+
+
+
+
+
+  components: {
+    refresh: refresh,
+    navTab: navTab,
+    tabBar4: tabBar4 },
+
+  onShow: function onShow() {
+
+  },
+  data: function data() {
+    return {
+      menus: menus,
+      toView: '', //回到顶部id
+      currentPage: 'longIndex',
+      currentTab: 0, //sweiper所在页
       pages: [1, 1, 1, 1, 1, 1, 1, 1, 1], //第几页存储 
       tabTitle: ['前端', '后端', '测试', '运营', '人工智能', '其它'], //导航栏格式
-      list: [[1, 2, 3, 4, 5, 6], ['a', 'b', 'c', 'd', 'e', 'f'], [], ['2233', '4234', '13144', '324244'], [1, 2, 3, 4, 5, 6], ['a', 'b', 'c', 'd', 'e', 'f']] //数据格式
-    };}, methods: { toTop: function toTop() {var _this = this;this.toView = '';setTimeout(function () {_this.toView = 'top' + _this.currentTab;}, 10);}, changeTab: function changeTab(index) {this.currentTab = index;}, // 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
-    isRequest: function isRequest(pages) {var _this2 = this;return new Promise(function (resolve, reject) {_this2.pages[_this2.currentTab]++;var that = _this2;setTimeout(function () {uni.hideLoading();uni.showToast({ icon: 'none', title: "\u8BF7\u6C42\u7B2C".concat(that.currentTab + 1, "\u4E2A\u5BFC\u822A\u680F\u7684\u7B2C").concat(that.pages[that.currentTab], "\u9875\u6570\u636E\u6210\u529F") });var newData = ['新数据1', '新数据2', '新数据3'];resolve(newData);}, 1000);});}, // swiper 滑动
-    swiperTab: function swiperTab(e) {var index = e.detail.current; //获取索引
-      this.$refs.navTab.longClick(index);}, // 加载更多 util.throttle为防抖函数
-    lower1: _util.util.throttle(function (e) {var _this3 = this;console.log("\u52A0\u8F7D".concat(this.currentTab)); //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
-      uni.showLoading({ title: '加载中', mask: true });this.isRequest().then(function (res) {var tempList = _this3.list;tempList[_this3.currentTab] = tempList[_this3.currentTab].concat(res);console.log(tempList);_this3.list = tempList;_this3.$forceUpdate(); //二维数组，开启强制渲染
-      });}, 300),
-    // 刷新touch监听
-    refreshStart: function refreshStart(e) {
-      this.$refs.refresh.refreshStart(e);
-    },
-    refreshMove: function refreshMove(e) {
-      this.$refs.refresh.refreshMove(e);
-    },
-    refreshEnd: function refreshEnd(e) {
-      this.$refs.refresh.refreshEnd(e);
-    },
-    isRefresh: function isRefresh() {var _this4 = this;
+      list: [
+      [1, 2, 3, 4, 5, 6],
+      ['a', 'b', 'c', 'd', 'e', 'f'],
+      [],
+      ['2233', '4234', '13144', '324244'],
+      [1, 2, 3, 4, 5, 6],
+      ['a', 'b', 'c', 'd', 'e', 'f']]
+      //数据格式
+    };
+  } }, _defineProperty(_components$onShow$da, "onShow", function onShow()
+{var _this = this;
+  (0, _index.get_tabs)().then(function (res) {
+    _this.tabTitle = res.result.data;
+    console.log(_this.tabTitle);
+  });
+}), _defineProperty(_components$onShow$da, "methods",
+{
+  toTop: function toTop() {var _this2 = this;
+    this.toView = '';
+    setTimeout(function () {
+      _this2.toView = 'top' + _this2.currentTab;
+    }, 10);
+  },
+  changeTab: function changeTab(index) {
+    this.currentTab = index;
+  },
+  // 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
+  isRequest: function isRequest(pages) {var _this3 = this;
+    return new Promise(function (resolve, reject) {
+      _this3.pages[_this3.currentTab]++;
+      var that = _this3;
       setTimeout(function () {
+        uni.hideLoading();
         uni.showToast({
-          icon: 'success',
-          title: '刷新成功' });
+          icon: 'none',
+          title: "\u8BF7\u6C42\u7B2C".concat(that.currentTab + 1, "\u4E2A\u5BFC\u822A\u680F\u7684\u7B2C").concat(that.pages[that.currentTab], "\u9875\u6570\u636E\u6210\u529F") });
 
-        _this4.$refs.refresh.endAfter(); //刷新结束调用
+        var newData = ['新数据1', '新数据2', '新数据3'];
+        resolve(newData);
       }, 1000);
-    },
-    gotoNews: function gotoNews(i) {
-      if (i === 0) {
-        uni.navigateTo({
-          url: "../news/index" });
+    });
+  },
+  // swiper 滑动
+  swiperTab: function swiperTab(e) {
+    var index = e.detail.current; //获取索引
+    this.$refs.navTab.longClick(index);
+  },
+  // 加载更多 util.throttle为防抖函数
+  lower1: _util.util.throttle(function (e) {var _this4 = this;
+    console.log("\u52A0\u8F7D".concat(this.currentTab)); //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
+    uni.showLoading({
+      title: '加载中',
+      mask: true });
 
-      } else
-      if (i === 1) {
-        uni.navigateTo({
-          url: "../resume/resume" });
+    this.isRequest().then(function (res) {
+      var tempList = _this4.list;
+      tempList[_this4.currentTab] = tempList[_this4.currentTab].concat(res);
+      console.log(tempList);
+      _this4.list = tempList;
+      _this4.$forceUpdate(); //二维数组，开启强制渲染
+    });
+  }, 300),
+  // 刷新touch监听
+  refreshStart: function refreshStart(e) {
+    this.$refs.refresh.refreshStart(e);
+  },
+  refreshMove: function refreshMove(e) {
+    this.$refs.refresh.refreshMove(e);
+  },
+  refreshEnd: function refreshEnd(e) {
+    this.$refs.refresh.refreshEnd(e);
+  },
+  isRefresh: function isRefresh() {var _this5 = this;
+    setTimeout(function () {
+      uni.showToast({
+        icon: 'success',
+        title: '刷新成功' });
 
-      }
-    },
-    gotodetails: function gotodetails() {
+      _this5.$refs.refresh.endAfter(); //刷新结束调用
+    }, 1000);
+  },
+  gotoNews: function gotoNews(i) {
+    if (i === 0) {
       uni.navigateTo({
-        url: "../job_content/job_content" });
+        url: "../news/index" });
 
-    } } };exports.default = _default;
+    } else if (i === 1) {
+      uni.navigateTo({
+        url: "../resume/resume" });
+
+    }
+  },
+  gotodetails: function gotodetails() {
+    uni.navigateTo({
+      url: "../job_content/job_content" });
+
+  } }), _components$onShow$da);exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
