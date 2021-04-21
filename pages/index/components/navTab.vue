@@ -5,7 +5,7 @@
 			style="white-space: nowrap; display: flex" 
 			scroll-with-animation :scroll-left="tabLeft">
 				<view 
-					class="longItem" 
+					class="longItem"
 					:style='"width:"+isWidth+"px"' 
 					:data-index="index" :class="index===tabClick?'click':''" 
 					v-for="(item,index) in tabTitle" 

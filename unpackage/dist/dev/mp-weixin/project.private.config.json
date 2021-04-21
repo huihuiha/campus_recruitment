@@ -21,6 +21,12 @@
         {
           "name": "pages/message/message",
           "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
           "scene": null
         }
       ]

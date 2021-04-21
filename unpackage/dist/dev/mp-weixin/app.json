@@ -5,7 +5,8 @@
     "pages/my/my",
     "pages/news/index",
     "pages/resume/resume",
-    "pages/job_content/job_content"
+    "pages/job_content/job_content",
+    "pages/publish/publish"
   ],
   "subPackages": [],
   "window": {
@@ -42,6 +43,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap1.json"
+  "usingComponents": {}
 }

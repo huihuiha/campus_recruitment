@@ -1,5 +1,7 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -59,9 +61,19 @@
 				"navigationStyle": "default",
 				"navigationBarBackgroundColor": "#ff6364",
 				"disableScroll": true
-            }
-            
-        }
+            }     
+        },{
+		    "path" : "pages/publish/publish",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "招聘发布",
+		        "navigationStyle": "default",
+		        "navigationBarBackgroundColor": "#ff6364",
+		        "disableScroll": true
+		    }
+		    
+		}
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

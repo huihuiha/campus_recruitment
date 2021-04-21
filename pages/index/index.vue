@@ -41,31 +41,52 @@
 			</view>
 		</view>
 
-		<view class="container999" @touchstart="refreshStart" @touchmove="refreshMove" @touchend="refreshEnd">
-			<refresh ref="refresh" @isRefresh='isRefresh'></refresh>
+		<view class="container999" 
+			@touchstart="refreshStart" 
+			@touchmove="refreshMove" 
+			@touchend="refreshEnd">
+			<refresh 
+			ref="refresh" 
+			@isRefresh='isRefresh'></refresh>
 			<view class='nav'>
-				<navTab ref="navTab" :tabTitle="tabTitle" @changeTab='changeTab'></navTab>
+				<navTab ref="navTab" 
+				:tabTitle="tabTitle" 
+				@changeTab='changeTab'
+				>
+				</navTab>
 			</view>
-			
+
 			<!-- swiper切换 swiper-item表示一页 scroll-view表示滚动视窗 -->
-			<swiper style="min-height: 100vh;" :current="currentTab" @change="swiperTab">
-				<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex" @click="gotodetails">
-					<scroll-view style="height: 100%;" scroll-y="true" @scrolltolower="lower1" scroll-with-animation
+			<swiper style="min-height:50vh;" 
+			
+				:current="currentTab"
+				 @change="swiperTab">
+				<swiper-item 
+					v-for="(listItem,listIndex) in list" 
+					:key="listItem._id" 
+					@click="gotodetails">
+					<scroll-view 
+						style="height: 100%;" 
+						scroll-y="true" 
+						scroll-x="true"
+						@scrolltolower="lower1" 
+						scroll-with-animation
 						:scroll-into-view="toView">
-						<view :id="'top'+listIndex" style="width: 100%;height: 120upx;"></view>
+						<view :id="'top'+listIndex" style="width: 100%;height: 120upx;">
+						</view>
 						<view class='content'>
 							<view class='card' v-for="(item,index) in listItem" v-if="listItem.length > 0" :key="index">
-								<image class="image" src="../../static/company/company.png">
+								<image class="image" :src="item.image">
 								</image>
 								<view class="message">
 									<view class="name">
-										广州凡科
+										{{item.name}}
 									</view>
 									<view class="money">
-										8k-15K
+										{{item.min_money}}k-{{item.max_money}}K
 									</view>
 									<view class="other">
-										广州 | 经验不限 | 本科
+										{{item.place}} | {{get_experience(item.exoerience)}} | {{item.education}}
 									</view>
 								</view>
 							</view>
@@ -91,7 +112,8 @@
 	} from '@/common/util.js'
 
 	import {
-		get_tabs
+		get_tabs,
+		get_job_list
 	} from '@/model/index.js'
 
 
@@ -122,32 +144,29 @@
 			navTab,
 			tabBar4
 		},
-		onShow() {
-
-		},
 		data() {
 			return {
 				menus,
 				toView: '', //回到顶部id
 				currentPage: 'longIndex',
 				currentTab: 0, //sweiper所在页
-				pages: [1, 1, 1, 1, 1, 1, 1, 1, 1], //第几页存储 
+				pages: [1, 1, 1, 1, 1, 1], //第几页存储 
 				tabTitle: ['前端', '后端', '测试', '运营', '人工智能', '其它'], //导航栏格式
 				list: [
-					[1, 2, 3, 4, 5, 6],
-					['a', 'b', 'c', 'd', 'e', 'f'],
 					[],
-					['2233', '4234', '13144', '324244'],
-					[1, 2, 3, 4, 5, 6],
-					['a', 'b', 'c', 'd', 'e', 'f'],
+					[],
+					[],
+					[],
+					[],
+					[],
 				] //数据格式
 			};
 		},
 		onShow() {
 			get_tabs().then(res => {
 				this.tabTitle = res.result.data
-				console.log(this.tabTitle)
 			})
+			this.get_list(0)
 		},
 		methods: {
 			toTop() {
@@ -156,79 +175,95 @@
 					this.toView = 'top' + this.currentTab
 				}, 10)
 			},
+			get_list(index) {
+				uni.showLoading({
+					title: "加载中..."
+				})
+				get_job_list(index).then(res => {
+					this.list[index] = res.result.data
+					this.$forceUpdate()
+					uni.hideLoading()
+				})
+			},
 			changeTab(index) {
 				this.currentTab = index
-			},
-			// 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
-			isRequest(pages) {
-				return new Promise((resolve, reject) => {
-					this.pages[this.currentTab]++
-					var that = this
-					setTimeout(() => {
-						uni.hideLoading()
-						uni.showToast({
-							icon: 'none',
-							title: `请求第${that.currentTab + 1 }个导航栏的第${that.pages[that.currentTab]}页数据成功`
-						})
-						let newData = ['新数据1', '新数据2', '新数据3']
-						resolve(newData)
-					}, 1000)
-				})
+				this.get_list(index)
 			},
 			// swiper 滑动
 			swiperTab: function(e) {
 				var index = e.detail.current //获取索引
+				console.log(index)
 				this.$refs.navTab.longClick(index);
 			},
 			// 加载更多 util.throttle为防抖函数
 			lower1: util.throttle(function(e) {
-				console.log(`加载${this.currentTab}`) //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
-				uni.showLoading({
-					title: '加载中',
-					mask: true
-				})
-				this.isRequest().then((res) => {
-					let tempList = this.list
-					tempList[this.currentTab] = tempList[this.currentTab].concat(res)
-					console.log(tempList)
-					this.list = tempList
-					this.$forceUpdate() //二维数组，开启强制渲染
-				})
-			}, 300),
+			console.log(`加载${this.currentTab}`)//currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
+			uni.showLoading({
+				title: '加载中',
+				mask:true
+			})
+			
+			get_job_list(this.currentTab,this.currentPage[this.currentTab]).then(res=>{
+				this.pages[this.currentTab]++
+
+				let tempList = this.list
+				tempList[this.currentTab] = tempList[this.currentTab].concat(res.result.data)
+				this.list = tempList
+				uni.hideLoading()
+				this.$forceUpdate() //二维数组，开启强制渲染
+			})
+			
+			// this.isRequest().then((res)=>{
+			// 	let tempList = this.list
+			// 	tempList[this.currentTab] = tempList[this.currentTab].concat(res)
+			// 	console.log(tempList)
+			// 	this.list = tempList
+			// 	this.$forceUpdate() //二维数组，开启强制渲染
+			// })
+		}, 300),
+			
+			
 			// 刷新touch监听
 			refreshStart(e) {
 				this.$refs.refresh.refreshStart(e);
 			},
-			refreshMove(e) {
+			refreshMove(e){
 				this.$refs.refresh.refreshMove(e);
 			},
 			refreshEnd(e) {
+				
 				this.$refs.refresh.refreshEnd(e);
 			},
-			isRefresh() {
-				setTimeout(() => {
-					uni.showToast({
-						icon: 'success',
-						title: '刷新成功'
-					})
-					this.$refs.refresh.endAfter() //刷新结束调用
-				}, 1000)
+			isRefresh(){
+					setTimeout(() => {
+						uni.showToast({
+							icon: 'success',
+							title: '刷新成功'
+						})
+						this.$refs.refresh.endAfter() //刷新结束调用
+					}, 1000)
 			},
 			gotoNews(i) {
-				if (i === 0) {
-					uni.navigateTo({
-						url: "../news/index"
-					})
-				} else if (i === 1) {
-					uni.navigateTo({
-						url: "../resume/resume"
-					})
-				}
+				const route = [
+					{url:"../news/index"},
+					{url:"../resume/resume"},
+					{url:"../publish/publish"}
+				]
+				uni.navigateTo({
+					url:route[i].url
+				})
+
 			},
 			gotodetails() {
 				uni.navigateTo({
 					url: "../job_content/job_content"
 				})
+			},
+			get_experience(experience){
+				if(experience){
+					return `${experience}年`
+				}
+				return '经验不限'
 			}
 		}
 	}
