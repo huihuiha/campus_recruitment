@@ -1,9 +1,9 @@
 {
-    "id": "mzy-tabs",
-    "name": "mzy-tabs",
-    "version": "1.0.5",
-    "description": "选项卡，兼容APP端、微信小程序和H5",
+    "id": "zhaoxin-formList",
+    "name": "formList",
+    "version": "2.1.0",
+    "description": "表单组件，传入数组生成表单，简单操作直接获取验证后结果。",
     "keywords": [
-        "选项卡"
+        "表单组件，表单验证，简单，直接"
     ]
 }

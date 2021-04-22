@@ -69,7 +69,7 @@
 		        "navigationBarTitleText": "招聘发布",
 		        "navigationStyle": "default",
 		        "navigationBarBackgroundColor": "#ff6364",
-		        "disableScroll": true
+		        "disableScroll": false
 		    }
 		    
 		}

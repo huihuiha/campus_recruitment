@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uniSegmentedControl: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 93))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 101))
     },
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 100))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 108))
     }
   }
 } catch (e) {
@@ -209,7 +209,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _message = __webpack_require__(/*! @/model/message.js */ 35);var uniSegmentedControl = function uniSegmentedControl() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 93));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniCard = function uniCard() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 100));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var msgItem = function msgItem() {__webpack_require__.e(/*! require.ensure | pages/message/components/msgItem */ "pages/message/components/msgItem").then((function () {return resolve(__webpack_require__(/*! ./components/msgItem.vue */ 107));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var items = ['初筛', '笔试', '面试', '不合适'];var _default =
+var _message = __webpack_require__(/*! @/model/message.js */ 35);var uniSegmentedControl = function uniSegmentedControl() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 101));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniCard = function uniCard() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 108));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var msgItem = function msgItem() {__webpack_require__.e(/*! require.ensure | pages/message/components/msgItem */ "pages/message/components/msgItem").then((function () {return resolve(__webpack_require__(/*! ./components/msgItem.vue */ 115));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var items = ['初筛', '笔试', '面试', '不合适'];var _default =
 
 
 
