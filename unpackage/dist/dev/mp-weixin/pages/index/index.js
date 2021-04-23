@@ -408,6 +408,14 @@ var menus = [{
       }, 1000);
     },
     gotoNews: function gotoNews(i) {
+
+      if (i === 2) {
+        uni.navigateTo({
+          url: "../my/my" });
+
+      }
+
+
       var route = [
       { url: "../news/index" },
       { url: "../resume/resume" },

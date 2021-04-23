@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/index/index",
     "pages/message/message",
     "pages/my/my",
@@ -43,6 +44,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap8.json"
+  "usingComponents": {}
 }

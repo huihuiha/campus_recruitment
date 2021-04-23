@@ -244,6 +244,14 @@
 					}, 1000)
 			},
 			gotoNews(i) {
+				
+				if(i === 2){
+					uni.navigateTo({
+						url:"../my/my"
+					})
+				}
+				
+				
 				const route = [
 					{url:"../news/index"},
 					{url:"../resume/resume"},

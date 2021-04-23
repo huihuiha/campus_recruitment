@@ -6,8 +6,9 @@
 					<image :src="userinfo.face"></image>
 				</view>
 				<view class="info">
-					<view class="username">{{userinfo.username}}</view>
-					<view class="integral">应届生/大一/大二</view>
+					<view class="username" @click="getUserInfo">{{!userinfo.username ?"请点击登录": userinfo.username}}
+					</view>
+					<view class="integral">{{ getGender(userinfo.gender) }} / {{ userinfo.city }}</view>
 				</view>
 			</view>
 			<view class="setting">
@@ -41,89 +42,134 @@
 		</view>
 
 
-
 	</view>
 </template>
 <script>
+	const orderTypeLise = [
+		//name-标题 icon-图标 badge-角标
+		{
+			name: '通过初筛',
+			icon: 'l1.png',
+			badge: 1
+		},
+		{
+			name: '关注公司',
+			icon: 'l2.png',
+			badge: 2
+		},
+		{
+			name: '代面试',
+			icon: 'l3.png',
+			badge: 6
+		}
+	]
+
+
+	const severList = [
+		[{
+				name: '我的收藏',
+				icon: 'point.png'
+			},
+			{
+				name: '附件简历',
+				icon: 'momey.png'
+			},
+			{
+				name: '个人主页',
+				icon: 'renw.png'
+			},
+		],
+		[{
+				name: '个人主页',
+				icon: 'mingxi.png'
+			},
+			{
+				name: '技能提升',
+				icon: 'addr.png'
+			},
+			{
+				name: '安全中心',
+				icon: 'security.png'
+			},
+			{
+				name: '关于',
+				icon: 'bank.png'
+			},
+
+			{
+				name: '在线客服',
+				icon: 'kefu.png'
+			}
+		]
+	]
+
+
 	export default {
 		data() {
 			return {
-				//#ifdef APP-PLUS
-				isH5Plus: true,
-				//#endif
-				//#ifndef APP-PLUS
-				isH5Plus: false,
-				//#endif
-				userinfo: {},
-				orderTypeLise: [
-					//name-标题 icon-图标 badge-角标
-					{
-						name: '通过初筛',
-						icon: 'l1.png',
-						badge: 1
-					},
-					{
-						name: '关注公司',
-						icon: 'l2.png',
-						badge: 2
-					},
-					{
-						name: '代面试',
-						icon: 'l3.png',
-						badge: 6
-					}
-				],
-				severList: [
-					[{
-							name: '我的收藏',
-							icon: 'point.png'
-						},
-						{
-							name: '附件简历',
-							icon: 'momey.png'
-						},
-						{
-							name: '个人主页',
-							icon: 'renw.png'
-						},
-					],
-					[{
-							name: '个人主页',
-							icon: 'mingxi.png'
-						},
-						{
-							name: '技能提升',
-							icon: 'addr.png'
-						},
-						{
-							name: '安全中心',
-							icon: 'security.png'
-						},
-						{
-							name: '关于',
-							icon: 'bank.png'
-						},
-
-						{
-							name: '在线客服',
-							icon: 'kefu.png'
-						}
-					]
-				],
+				userinfo: {
+					username: "",
+					face: "",
+					city: "",
+					gender:false
+				},
+				orderTypeLise,
+				severList
 			};
 		},
 		onLoad() {
-			//加载
-			this.init();
+			this.login()
 		},
 		methods: {
-			init() {
-				//用户信息
-				this.userinfo = {
-					face: '../../static/HM-PersonalCenter/face.jpeg',
-					username: "VIP会员10240",
-					integral: "1435"
+			login() {
+				if(!uni.getStorageSync('openid')){
+					uni.login({
+						provider: 'weixin',
+						success(e) {
+							uniCloud.callFunction({
+								name: "get_user_info",
+								data: {
+									code: e.code
+								}
+							}).then(res => {
+								uni.setStorageSync('openid',res.result)
+							})
+						}
+					})
 				}
+			},
+			getUserInfo() {
+				const _this = this
+				wx.getUserProfile({
+					desc: "请问",
+					success(e) {
+
+						const {
+							userInfo
+						} = e
+						console.log(userInfo)
+						const {nickName,avatarUrl,city,gender} = userInfo
+						// console.log(username,face,city,gender)
+						_this.userinfo.username = nickName
+						_this.userinfo.face = avatarUrl
+						_this.userinfo.city = city
+						_this.userinfo.gender = gender
+						const openid = uni.getStorageSync('openid')
+						console.log(openid,"============")
+						uniCloud.callFunction({
+							name:"adduser",
+							data:{
+								openid,
+								nickName,
+								avatarUrl,
+								city,gender
+							}
+						})
+					},
+					fail(e) {
+						console.log(e)
+					}
+				})
 			},
 			//用户点击订单类型
 			toOrderType(index) {
@@ -136,6 +182,13 @@
 				uni.showToast({
 					title: this.severList[list_i][li_i].name
 				});
+			},
+			getGender(gender) {
+				console.log(gender)
+				if (!gender) {
+					return ""
+				}
+				return gender === 1 ? "男生" : "女生"
 			}
 		}
 	}

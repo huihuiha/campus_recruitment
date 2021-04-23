@@ -5,5 +5,12 @@
     "description": "表单组件，传入数组生成表单，简单操作直接获取验证后结果。",
     "keywords": [
         "表单组件，表单验证，简单，直接"
-    ]
+    ],
+    "devDependencies": {
+        "@types/html5plus": "^1.0.1",
+        "@types/uni-app": "^1.4.3"
+    },
+    "dependencies": {
+        "crypto-js": "^4.0.0"
+    }
 }

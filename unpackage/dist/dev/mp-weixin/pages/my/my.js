@@ -97,6 +97,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.getGender(_vm.userinfo.gender)
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        m0: m0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -130,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -176,85 +185,131 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var _default =
+
+var orderTypeLise = [
+//name-标题 icon-图标 badge-角标
+{
+  name: '通过初筛',
+  icon: 'l1.png',
+  badge: 1 },
+
+{
+  name: '关注公司',
+  icon: 'l2.png',
+  badge: 2 },
+
+{
+  name: '代面试',
+  icon: 'l3.png',
+  badge: 6 }];
+
+
+
+
+var severList = [
+[{
+  name: '我的收藏',
+  icon: 'point.png' },
+
+{
+  name: '附件简历',
+  icon: 'momey.png' },
+
+{
+  name: '个人主页',
+  icon: 'renw.png' }],
+
+
+[{
+  name: '个人主页',
+  icon: 'mingxi.png' },
+
+{
+  name: '技能提升',
+  icon: 'addr.png' },
+
+{
+  name: '安全中心',
+  icon: 'security.png' },
+
+{
+  name: '关于',
+  icon: 'bank.png' },
+
+
+{
+  name: '在线客服',
+  icon: 'kefu.png' }]];var _default =
+
+
+
+
+
 {
   data: function data() {
     return {
+      userinfo: {
+        username: "",
+        face: "",
+        city: "",
+        gender: false },
 
-
-
-
-      isH5Plus: false,
-
-      userinfo: {},
-      orderTypeLise: [
-      //name-标题 icon-图标 badge-角标
-      {
-        name: '通过初筛',
-        icon: 'l1.png',
-        badge: 1 },
-
-      {
-        name: '关注公司',
-        icon: 'l2.png',
-        badge: 2 },
-
-      {
-        name: '代面试',
-        icon: 'l3.png',
-        badge: 6 }],
-
-
-      severList: [
-      [{
-        name: '我的收藏',
-        icon: 'point.png' },
-
-      {
-        name: '附件简历',
-        icon: 'momey.png' },
-
-      {
-        name: '个人主页',
-        icon: 'renw.png' }],
-
-
-      [{
-        name: '个人主页',
-        icon: 'mingxi.png' },
-
-      {
-        name: '技能提升',
-        icon: 'addr.png' },
-
-      {
-        name: '安全中心',
-        icon: 'security.png' },
-
-      {
-        name: '关于',
-        icon: 'bank.png' },
-
-
-      {
-        name: '在线客服',
-        icon: 'kefu.png' }]] };
-
-
-
+      orderTypeLise: orderTypeLise,
+      severList: severList };
 
   },
   onLoad: function onLoad() {
-    //加载
-    this.init();
+    this.login();
   },
   methods: {
-    init: function init() {
-      //用户信息
-      this.userinfo = {
-        face: '../../static/HM-PersonalCenter/face.jpeg',
-        username: "VIP会员10240",
-        integral: "1435" };
+    login: function login() {
+      if (!uni.getStorageSync('openid')) {
+        uni.login({
+          provider: 'weixin',
+          success: function success(e) {
+            uniCloud.callFunction({
+              name: "get_user_info",
+              data: {
+                code: e.code } }).
+
+            then(function (res) {
+              uni.setStorageSync('openid', res.result);
+            });
+          } });
+
+      }
+    },
+    getUserInfo: function getUserInfo() {
+      var _this = this;
+      wx.getUserProfile({
+        desc: "请问",
+        success: function success(e) {var
+
+
+          userInfo =
+          e.userInfo;
+          console.log(userInfo);var
+          nickName = userInfo.nickName,avatarUrl = userInfo.avatarUrl,city = userInfo.city,gender = userInfo.gender;
+          // console.log(username,face,city,gender)
+          _this.userinfo.username = nickName;
+          _this.userinfo.face = avatarUrl;
+          _this.userinfo.city = city;
+          _this.userinfo.gender = gender;
+          var openid = uni.getStorageSync('openid');
+          console.log(openid, "============");
+          uniCloud.callFunction({
+            name: "adduser",
+            data: {
+              openid: openid,
+              nickName: nickName,
+              avatarUrl: avatarUrl,
+              city: city, gender: gender } });
+
+
+        },
+        fail: function fail(e) {
+          console.log(e);
+        } });
 
     },
     //用户点击订单类型
@@ -268,8 +323,15 @@ var _default =
       uni.showToast({
         title: this.severList[list_i][li_i].name });
 
+    },
+    getGender: function getGender(gender) {
+      console.log(gender);
+      if (!gender) {
+        return "";
+      }
+      return gender === 1 ? "男生" : "女生";
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 19)["default"]))
 
 /***/ }),
 

@@ -99,19 +99,19 @@ try {
       return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 127))
     },
     uniFormsItem: function() {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 135))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 135))
     },
     uniEasyinput: function() {
       return Promise.all(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 142))
     },
     uniDataPicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 157))
+      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 150))
     },
     uniNumberBox: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 150))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 158))
     },
     uniFilePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 265))
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 165))
     }
   }
 } catch (e) {
@@ -168,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _components;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniForm = function uniForm() {Promise.all(/*! require.ensure | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 127));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniFormsItem = function uniFormsItem() {Promise.all(/*! require.ensure | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 135));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniDataCheckbox = function uniDataCheckbox() {Promise.all(/*! require.ensure | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 165));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniNumberBox = function uniNumberBox() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 150));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniDataPicker = function uniDataPicker() {Promise.all(/*! require.ensure | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 157));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.rules = void 0;var _components;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniForm = function uniForm() {Promise.all(/*! require.ensure | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 127));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniFormsItem = function uniFormsItem() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 135));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniDataCheckbox = function uniDataCheckbox() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */ "uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniNumberBox = function uniNumberBox() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 158));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniDataPicker = function uniDataPicker() {Promise.all(/*! require.ensure | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 150));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -246,6 +246,94 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+var rules = {
+  name: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入姓名' }] },
+
+
+  description: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入正确的职位描述' }] },
+
+
+  education: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入正确的学历要求' }] },
+
+
+  experience: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入正确的工作经验' }] },
+
+
+  place: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入正确的公司地址' }] },
+
+
+  requirment: {
+    rules: [{
+      required: true,
+      errorMessage: '请输入正确的职位需求' }] },
+
+
+  type: {
+    rules: [{
+      required: true,
+      errorMessage: '请选择正确的职业类型' }] } };exports.rules = rules;
+
+
+
+var items = [{
+  text: "专科",
+  value: "专科" },
+
+{
+  text: "本科",
+  value: "本科" },
+
+{
+  text: "研究生",
+  value: "研究生" },
+
+{
+  text: "博士",
+  value: "博士" }];
+
+
+var job_types = [{
+  text: "前端开发",
+  value: 0 },
+{
+  text: "后端开发",
+  value: 1 },
+
+{
+  text: "测试",
+  value: 2 },
+
+{
+  text: "实习",
+  value: 3 },
+
+{
+  text: "勤工俭学",
+  value: 4 },
+
+{
+  text: "兼职",
+  value: 5 }];var _default =
 
 
 
@@ -260,104 +348,47 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      job_types: [{
-        text: "前端开发",
-        value: 0 },
-      {
-        text: "后端开发",
-        value: 1 },
-
-      {
-        text: "测试",
-        value: 2 },
-
-      {
-        text: "实习",
-        value: 3 },
-
-      {
-        text: "勤工俭学",
-        value: 4 },
-
-      {
-        text: "兼职",
-        value: 5 }],
-
-
-      items: [{
-        text: "专科",
-        value: "专科" },
-
-      {
-        text: "本科",
-        value: "本科" },
-
-      {
-        text: "研究生",
-        value: "研究生" },
-
-      {
-        text: "博士",
-        value: "博士" }],
-
-
-      formData: {
-        name: 'LiMing',
-        email: 'dcloud@email.com' },
-
-      rules: {
-        // 对name字段进行必填验证
-        name: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入姓名' },
-
-          {
-            minLength: 3,
-            maxLength: 5,
-            errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符' }] },
-
-
-
-        // 对email字段进行必填验证
-        email: {
-          rules: [{
-            format: 'email',
-            errorMessage: '请输入正确的邮箱地址' }] } },
-
-
-
+      job_types: job_types,
+      items: items,
+      formData: {},
+      rules: rules,
       value: [0, 2],
-      range: [{
-        "value": 0,
-        "text": "篮球" },
-      {
-        "value": 1,
-        "text": "足球" },
-      {
-        "value": 2,
-        "text": "游泳" }] };
-
+      image: "" };
 
   },
   methods: {
     onchange: function onchange(e) {
       var value = e.detail.value;
     },
+
     onnodeclick: function onnodeclick(node) {},
-    submit: function submit() {
+    submit: function submit() {var _this = this;
       this.$refs.form.submit().then(function (res) {
+        console.log(_this.rules);
+        res.min_money = _this.formData.min_money;
+        res.max_money = _this.formData.max_money;
+        res.image = _this.image;
         console.log('表单数据信息：', res);
+
       }).catch(function (err) {
         console.log('表单错误信息：', err);
       });
     },
-    change: function change(e) {
-      console.log('e:', e);
-    },
-    ontypeChange: function ontypeChange(e) {
-      console.log('e:', e);
+    success: function success(e) {var _this2 = this;
+      var filePath = e.tempFilePaths[0];
+      console.log(e);
+      var filename = e.tempFiles[0].name;
+
+      uniCloud.getTempFileURL({
+        fileList: [filePath] }).
+
+      then(function (res) {
+        console.log(res);
+        _this2.image = res.fileList[0].download_url;
+      });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 19)["default"]))
 
 /***/ }),
 
